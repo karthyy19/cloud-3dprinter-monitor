@@ -209,11 +209,18 @@ data "aws_iam_policy_document" "infra_runner_stack" {
       "ssm:DeleteParameter",
       "ssm:GetParameter",
       "ssm:GetParameters",
-      "ssm:DescribeParameters",
       "ssm:AddTagsToResource",
       "ssm:ListTagsForResource",
     ]
     resources = ["arn:aws:ssm:eu-west-1:${data.aws_caller_identity.current.account_id}:parameter/printer-dashboard/*"]
+  }
+
+  # DescribeParameters only lists metadata (no values) and does not accept a parameter ARN
+  statement {
+    sid       = "DescribeParameters"
+    effect    = "Allow"
+    actions   = ["ssm:DescribeParameters"]
+    resources = ["*"]
   }
 
   statement {

@@ -8,13 +8,15 @@ import time
 import urllib.parse
 
 import boto3
+from botocore.config import Config
 
 KEY = os.environ["APPROVAL_KEY"].encode()
 APPROVE_URL = os.environ["APPROVE_URL"]
 TOPIC_ARN = os.environ["TOPIC_ARN"]
 LINK_SECONDS = 7 * 24 * 3600
 
-sns = boto3.client("sns")
+# Cognito waits only 5 seconds for this trigger, so fail fast and let the except below return the event
+sns = boto3.client("sns", config=Config(connect_timeout=1, read_timeout=2, retries={"max_attempts": 1}))
 
 
 def make_token(pool_id, username, email):
