@@ -105,7 +105,7 @@ def main():
         original = handle.read()
     head, _old, tail = split_readme(original)
     system = read_if_exists(os.path.join(HERE, "prompts", "readme_status.md"), 10000)
-    reply = strip_fences(llm.chat(system, build_user_message(head, tail), max_tokens=700))
+    reply = strip_fences(llm.chat(system, build_user_message(head, tail), max_tokens=2500))  # headroom: a reasoning model spends tokens thinking before it answers
     problems = validate(reply)
     if problems:
         print("Rejected the model output, README.md left unchanged:")

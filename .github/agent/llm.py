@@ -75,7 +75,17 @@ def chat(system, user, max_tokens=1200, temperature=0.2, retries=3, timeout=60):
                     "provider returned non-JSON (HTTP %s from %s, %d bytes): %r"
                     % (status, final_url, len(raw), snippet)
                 ) from None
-            return data["choices"][0]["message"]["content"].strip()
+            choice = data["choices"][0]
+            text = (choice["message"].get("content") or "").strip()
+            if not text:
+                # Reasoning models (e.g. gpt-oss) spend max_tokens on thinking first, which can
+                # leave the answer empty. Say so instead of handing callers a blank string.
+                raise LLMError(
+                    "provider returned an empty reply (finish_reason=%s, usage=%s); "
+                    "if finish_reason is 'length', raise max_tokens (now %d)"
+                    % (choice.get("finish_reason"), data.get("usage"), max_tokens)
+                )
+            return text
         except urllib.error.HTTPError as err:
             retryable = err.code in (429, 500, 502, 503, 504)
             if not retryable or attempt == retries:
