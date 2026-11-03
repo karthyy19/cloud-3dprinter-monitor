@@ -188,6 +188,34 @@ data "aws_iam_policy_document" "infra_runner_stack" {
     resources = ["*"]
   }
 
+  # The dashboard login: Cognito user pool and app client, the CloudFront distribution,
+  # the approval Lambdas and their function URL, and the two SecureString parameters.
+  statement {
+    sid    = "ManageDashboardLogin"
+    effect = "Allow"
+    actions = [
+      "cognito-idp:*",
+      "cloudfront:*",
+      "lambda:*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "ManageDashboardSecrets"
+    effect = "Allow"
+    actions = [
+      "ssm:PutParameter",
+      "ssm:DeleteParameter",
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:DescribeParameters",
+      "ssm:AddTagsToResource",
+      "ssm:ListTagsForResource",
+    ]
+    resources = ["arn:aws:ssm:eu-west-1:${data.aws_caller_identity.current.account_id}:parameter/printer-dashboard/*"]
+  }
+
   statement {
     sid       = "ReadGithubToken"
     effect    = "Allow"

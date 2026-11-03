@@ -172,6 +172,26 @@ class UnitTests(unittest.TestCase):
             self.assertEqual(llm.chat("s", "u"), "hi")
         self.assertEqual(len(calls), 3)
 
+    def test_llm_empty_reply_reports_finish_reason(self):
+        """A reasoning model that burns max_tokens on thinking returns "" - fail with the cause."""
+        class Resp:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+            def read(self):
+                return (b'{"choices":[{"message":{"content":""},"finish_reason":"length"}],'
+                        b'"usage":{"completion_tokens":700}}')
+
+        with mock.patch.dict(os.environ, {"LLM_API_KEY": "k"}), \
+                mock.patch("urllib.request.urlopen", lambda req, timeout=0: Resp()):
+            with self.assertRaises(llm.LLMError) as ctx:
+                llm.chat("s", "u", max_tokens=700)
+        self.assertIn("finish_reason=length", str(ctx.exception))
+        self.assertIn("700", str(ctx.exception))
+
     def test_llm_without_key_fails_clearly(self):
         with mock.patch.dict(os.environ, {"LLM_API_KEY": "", "GITHUB_TOKEN": ""}):
             with self.assertRaises(llm.LLMError):
