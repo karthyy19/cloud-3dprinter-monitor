@@ -34,7 +34,7 @@ def handler(event, context):
                 {"t": make_token(event["userPoolId"], event["userName"], email)})
             sns.publish(
                 TopicArn=TOPIC_ARN,
-                Subject="Dashboard sign-up: %s" % email,
+                Subject="Dashboard sign-up approval requested",
                 Message="%s has registered for the printer dashboard.\n\nTo review and approve:\n%s\n\n"
                         "The link works for 7 days. Ignore this email to leave them without access."
                         % (email, link),
