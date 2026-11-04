@@ -22,7 +22,6 @@ AWS EKS cluster built with Terraform, with GitHub Actions self-hosted runners on
 
 **Up next**
 - Bootstrap remote state in S3.  
-- Apply network and EKS cluster from the pipeline.  
 - Deploy runners (infra‑runner, app‑runner) with separate IAM roles.  
 - Include observability.  
 
