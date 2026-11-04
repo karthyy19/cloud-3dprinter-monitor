@@ -12,29 +12,27 @@ A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D p
 AWS EKS cluster built with Terraform, with GitHub Actions self-hosted runners on the cluster that deploy infrastructure and applications. 
 
 <!-- STATUS:START -->
-**Goal:** Goal not stated yet, add it to docs/status-notes.md  
+**Goal:** A hands‑on DevOps/IoT project to create a cloud‑based dashboard for our FDM 3D printer.  
 
-**Where I am now:** The project now has an EKS cluster and an App Runner service hosting a cloud‑based printer monitor dashboard. User authentication via CloudFront ALB and Cognito has been added, and basic IoT Core infrastructure is in place.  
+**Where I am now:** The core infrastructure is in place with authentication, app‑runner, and dashboard components merged. Current effort is fixing the status review documentation.  
 
 **In progress**
-- Adding code for user authentication and login through CloudFront ALB Cognito flow (PR #26).  
-- Applying copilot fixes and other minor bug fixes (commits 0ceae20, 80b36fd).  
-- Updating workflow configurations for Terraform and CI/CD pipelines.  
-- Refining Terraform EKS workflow paths and permissions.  
+- Fixing status review (owner notes).  
+- Refactoring code as part of recent PR #28.  
 
 **Up next**
-- Bootstrap remote state storage in S3.  
-- Deploy network and EKS cluster resources directly from the pipeline.  
+- Bootstrap remote state in S3.  
+- Apply network and EKS cluster from the pipeline.  
 - Deploy runners (infra‑runner, app‑runner) with separate IAM roles.  
-- Build the application image and push it to ECR for Kubernetes deployment.  
+- Include observability.  
 
 **Done recently**
-- Implemented user authentication and login via CloudFront ALB Cognito flow.  
-- Created App Runner service and dashboard for cloud‑based printer monitoring.  
-- Added IoT Core infrastructure as code and fixed EKS infra issues.  
-- Updated Terraform workflow paths, permissions, and added runner workflow PRs.
+- Added user authentication and login via CloudFront ALB Cognito flow (PR #26).  
+- Created app‑runner and dashboard for cloud‑based printer monitor (PR #23).  
+- Implemented IoT Core infrastructure as code (PR #19).  
+- Fixed Terraform EKS workflow path and permissions (PR #20).
 
-_This READ ME was last updated by the status agent on 2026-11-03 using openai/gpt-oss-120b._
+_This READ ME was last updated by the status agent on 2026-11-04 using openai/gpt-oss-120b._
 <!-- STATUS:END -->
 
 ## Architecture
