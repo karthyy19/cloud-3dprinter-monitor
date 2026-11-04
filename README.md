@@ -14,23 +14,27 @@ AWS EKS cluster built with Terraform, with GitHub Actions self-hosted runners on
 <!-- STATUS:START -->
 **Goal:** Goal not stated yet, add it to docs/status-notes.md  
 
-**Where I am now:** The repository now contains CI workflows for runners, an EKS cluster configured for self‑hosted runners, and recent fixes to the repo‑agent code. The infrastructure is being prepared but core application deployment is not yet in place.  
+**Where I am now:** The project now has an EKS cluster and an App Runner service hosting a cloud‑based printer monitor dashboard. User authentication via CloudFront ALB and Cognito has been added, and basic IoT Core infrastructure is in place.  
 
 **In progress**
-- Adding runner workflow for infra‑runner and app‑runner.  
-- Setting up the EKS cluster to host self‑hosted runners.  
-- Applying fixes to the repo‑agent implementation.  
+- Adding code for user authentication and login through CloudFront ALB Cognito flow (PR #26).  
+- Applying copilot fixes and other minor bug fixes (commits 0ceae20, 80b36fd).  
+- Updating workflow configurations for Terraform and CI/CD pipelines.  
+- Refining Terraform EKS workflow paths and permissions.  
 
 **Up next**
-- Apply network configuration and provision the EKS cluster via the pipeline.  
+- Bootstrap remote state storage in S3.  
+- Deploy network and EKS cluster resources directly from the pipeline.  
 - Deploy runners (infra‑runner, app‑runner) with separate IAM roles.  
-- Build the application image and push it to ECR.  
+- Build the application image and push it to ECR for Kubernetes deployment.  
 
 **Done recently**
-- Added runner workflow to the repository.  
-- Configured EKS cluster for self‑hosted runner usage
+- Implemented user authentication and login via CloudFront ALB Cognito flow.  
+- Created App Runner service and dashboard for cloud‑based printer monitoring.  
+- Added IoT Core infrastructure as code and fixed EKS infra issues.  
+- Updated Terraform workflow paths, permissions, and added runner workflow PRs.
 
-_Last updated by the status agent on 2026-10-25 using openai/gpt-oss-120b._
+_This READ ME was last updated by the status agent on 2026-11-03 using openai/gpt-oss-120b._
 <!-- STATUS:END -->
 
 ## Architecture
