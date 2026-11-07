@@ -1,6 +1,8 @@
 # 3D printer remote-monitoring web app
-
 A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D printer:
+
+<img width="1844" height="1125" alt="image" src="https://github.com/user-attachments/assets/777fd489-d85a-4b9f-b398-ac0d6a429c11" />
+
 1. IoT hardware:
    - Printer Serial port (COM3) connected to Arduino Q via usb hub
    - 1 USB webcam connected to Arduino Q via usb hub
@@ -8,8 +10,23 @@ A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D p
    - 1 ADXL345 accelerometer mounted on extruder head
    - 1 0.96 inch dual color oled screen connected to Arduino Q MCU
 
+<img width="838" height="797" alt="image" src="https://github.com/user-attachments/assets/80cb0466-e732-4c7d-b747-02d896a20045" />
+
+
 2. Cloud dashboard:
-AWS EKS cluster built with Terraform, with GitHub Actions self-hosted runners on the cluster that deploy infrastructure and applications. 
+
+<img width="834" height="724" alt="image" src="https://github.com/user-attachments/assets/e9e228ff-15f4-4aff-ad58-13243c0cbcf8" />
+<img width="836" height="726" alt="image" src="https://github.com/user-attachments/assets/cd7a8fa2-96ba-45e4-a7ab-11c86340052f" />
+
+
+An end-to-end cloud platform that streams live telemetry, vibration data and camera snapshots from a 3D printer to a secure web dashboard, built entirely as code on AWS.
+
+Infrastructure as Code: Terraform for every layer: VPC and networking, the EKS cluster, IoT ingestion and the ECS app stack, with remote state set up through a bootstrap module.
+CI/CD: GitHub Actions running on self-hosted runners in EKS (Actions Runner Controller, Karpenter autoscaling, separate IAM roles per runner through IRSA). The pipeline builds linux/amd64 images, pushes them to ECR with git-SHA tags, and rolls the ECS service.
+Application hosting: a containerised Python dashboard on ECS Fargate behind an ALB, served through CloudFront with origin protection (secret header). Logs go to CloudWatch.
+Security: Cognito login with an admin-approval step for new sign-ups (Lambda + SNS), secrets in SSM Parameter Store, least-privilege IAM, and mutual-TLS X.509 device authentication on AWS IoT Core.
+Data pipeline: MQTT topics → IoT rules → DynamoDB (with TTL) and S3, optional raw sensor archiving through Kinesis Firehose, and SNS alerts.
+Stack: AWS (EKS, ECS Fargate, ECR, IoT Core, DynamoDB, S3, CloudFront, ALB, Cognito, Lambda, SNS, Firehose, CloudWatch) · Terraform · Docker · GitHub Actions · Kubernetes / Helm · Python
 
 <!-- STATUS:START -->
 **Goal:** A hands‑on DevOps/IoT project to create a cloud‑based dashboard for our FDM 3D printer.  
