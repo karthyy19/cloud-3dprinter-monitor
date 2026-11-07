@@ -1,6 +1,8 @@
 # 3D printer remote-monitoring web app
-
 A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D printer:
+
+<img width="1844" height="1125" alt="image" src="https://github.com/user-attachments/assets/777fd489-d85a-4b9f-b398-ac0d6a429c11" />
+
 1. IoT hardware:
    - Printer Serial port (COM3) connected to Arduino Q via usb hub
    - 1 USB webcam connected to Arduino Q via usb hub
@@ -8,7 +10,14 @@ A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D p
    - 1 ADXL345 accelerometer mounted on extruder head
    - 1 0.96 inch dual color oled screen connected to Arduino Q MCU
 
+<img width="838" height="797" alt="image" src="https://github.com/user-attachments/assets/80cb0466-e732-4c7d-b747-02d896a20045" />
+
+
 2. Cloud dashboard:
+
+<img width="834" height="724" alt="image" src="https://github.com/user-attachments/assets/e9e228ff-15f4-4aff-ad58-13243c0cbcf8" />
+<img width="836" height="726" alt="image" src="https://github.com/user-attachments/assets/cd7a8fa2-96ba-45e4-a7ab-11c86340052f" />
+
 AWS EKS cluster built with Terraform, with GitHub Actions self-hosted runners on the cluster that deploy infrastructure and applications. 
 
 <!-- STATUS:START -->
