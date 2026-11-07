@@ -54,14 +54,12 @@ _This READ ME was last updated by the status agent on 2026-11-04 using openai/gp
 
 ## Roadmap
 
-- [ ] Bootstrap: remote state in S3
-- [ ] Network and EKS cluster applied from the pipeline
-- [ ] Runners deployed (infra-runner, app-runner) with separate IAM roles
-- [ ] App image build and push to ECR
-- [ ] Deploy the app to Kubernetes
-- [ ] Cognito auth and Cloudflare in front
+- [x] Bootstrap: remote state in S3
+- [x] Network and EKS cluster applied from the pipeline
+- [x] Runners deployed (infra-runner, app-runner) with separate IAM roles
+- [x] App image build and push to ECR
+- [x] Cognito auth and Cloudfront in front
 - [ ] Monitoring and alerts
-- [ ] Simulated printer sending telemetry end to end
 
 ## How to run it
 
