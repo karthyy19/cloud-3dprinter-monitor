@@ -18,7 +18,6 @@ A hands-on DevOps/IoT project to create a cloud based dashboard for our FDM 3D p
 <img width="834" height="724" alt="image" src="https://github.com/user-attachments/assets/e9e228ff-15f4-4aff-ad58-13243c0cbcf8" />
 <img width="836" height="726" alt="image" src="https://github.com/user-attachments/assets/cd7a8fa2-96ba-45e4-a7ab-11c86340052f" />
 
-3D Printer Remote Monitoring: AWS IoT & DevOps project
 
 An end-to-end cloud platform that streams live telemetry, vibration data and camera snapshots from a 3D printer to a secure web dashboard, built entirely as code on AWS.
 
