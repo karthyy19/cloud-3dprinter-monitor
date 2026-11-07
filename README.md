@@ -59,7 +59,9 @@ _This READ ME was last updated by the status agent on 2026-11-04 using openai/gp
 - [x] Runners deployed (infra-runner, app-runner) with separate IAM roles
 - [x] App image build and push to ECR
 - [x] Cognito auth and Cloudfront in front
-- [ ] Monitoring and alerts
+- [ ] Monitoring, alerts and observability
+- [ ] Refactoring terraform stacks
+- [ ] Break and learn 
 
 ## How to run it
 
