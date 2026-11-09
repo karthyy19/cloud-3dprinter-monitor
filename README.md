@@ -29,25 +29,26 @@ Data pipeline: MQTT topics → IoT rules → DynamoDB (with TTL) and S3, optiona
 Stack: AWS (EKS, ECS Fargate, ECR, IoT Core, DynamoDB, S3, CloudFront, ALB, Cognito, Lambda, SNS, Firehose, CloudWatch) · Terraform · Docker · GitHub Actions · Kubernetes / Helm · Python
 
 <!-- STATUS:START -->
-**Goal:** A hands‑on DevOps/IoT project to create a cloud‑based dashboard for our FDM 3D printer.  
+**Goal:** A hands‑on DevOps/IoT project to create a cloud based dashboard for our FDM 3D printer  
 
-**Where I am now:** The core infrastructure is in place with authentication, app‑runner, and dashboard components merged. Current effort is fixing the status review documentation.  
+**Where I am now:** The core infrastructure is in place – remote state in S3, EKS networking, App Runner services, and container images in ECR are all deployed. Authentication via Cognito and a CloudFront front‑end are functional, and the README and roadmap documentation have been updated.  
 
 **In progress**
-- Fixing status review (owner notes).  
-- Refactoring code as part of recent PR #28.  
+- Fixing the status review and updating the README documentation  
 
 **Up next**
-- Deploy runners (infra‑runner, app‑runner) with separate IAM roles.  
-- Include observability.  
+- Implement monitoring, alerts and observability  
+- Refactor the Terraform stacks  
+- Include observability features as noted in the owner notes  
+- Conduct a “break and learn” session for knowledge sharing  
 
 **Done recently**
-- Added user authentication and login via CloudFront ALB Cognito flow (PR #26).  
-- Created app‑runner and dashboard for cloud‑based printer monitor (PR #23).  
-- Implemented IoT Core infrastructure as code (PR #19).  
-- Fixed Terraform EKS workflow path and permissions (PR #20).
+- Remote state configured in S3 (bootstrap)  
+- Network and EKS cluster applied from the pipeline  
+- Runners and App Runner services deployed with separate IAM roles  
+- Cognito authentication and CloudFront front‑end added for user login
 
-_This READ ME was last updated by the status agent on 2026-11-04 using openai/gpt-oss-120b._
+_This READ ME was last updated by the status agent on 2026-11-09 using openai/gpt-oss-120b._
 <!-- STATUS:END -->
 
 ## Architecture
